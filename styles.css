@@ -1,9 +1,0 @@
-div.box {
-  width: 40px;
-  height: 40px;
-  background: black;
-  margin: 50;
-}
-div.box.selected {
-  background: red;
-}
