@@ -1,7 +1,9 @@
 import {Injectable} from 'angular2/core';
-import {User} from './user'
+import {UserModel} from './models/user.model'
+import {CatalogModel} from './models/catalog.model'
 
 @Injectable()
 export class Store {
-  user:User;
+  user:UserModel;
+  catalog:CatalogModel;
 }
