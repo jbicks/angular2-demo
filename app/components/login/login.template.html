@@ -1,0 +1,14 @@
+<div class=form-container>
+  <form [ngFormModel]="form" (ngSubmit)="submit()" class="form-signin">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <span *ngIf="form.errors" class="validation-error">{{form.errors | validation}}</span>
+
+      <input #username="ngForm" ngControl="username" [class.error]="!username.valid" type="text" class="input-block-level" placeholder="username">
+      <span *ngIf="!username.valid" class="validation-error">{{username.errors | validation}}</span>
+
+      <input #password="ngForm" ngControl="password" [class.error]="!password.valid" type="password" class="input-block-level" placeholder="password">
+      <span *ngIf="!password.valid" class="validation-error">{{password.errors | validation}}</span>
+
+      <button [disabled]="!form.valid" class="btn btn-large btn-primary" type="submit">Sign in</button>
+  </form>
+</div>

@@ -1,0 +1,42 @@
+.form-container {
+  width: 400px;
+  margin: 50px auto;
+}
+.form-signin {
+  border-radius: 10px;
+  background: #f4f4f4;
+  padding: 40px;
+  float: left;
+}
+.validation-error {
+  width: 400px;
+  color: white;
+  font-size: 11px;
+  background-color: #E82C0C;
+  border-radius: 4px;
+  padding: 4px 4px 4px 11px;
+  margin-top: 3px;
+  float: left;
+  clear: both;
+}
+.form-signin-heading {
+  margin: 0;
+}
+.input-block-level {
+  padding: 17px 10px;
+  margin: 10px 0 0 0;
+}
+.input-block-level:first-of-type {
+  margin-top: 15px;
+}
+.input-block-level.error {
+  background: #FFE6E5;
+  border-color: E82C0C;
+}
+.btn {
+  margin-top: 20px;
+  clear: both;
+}
+.btn[disabled] {
+  background: #C9C9C9;
+}
