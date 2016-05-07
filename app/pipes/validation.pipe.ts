@@ -10,8 +10,11 @@ export class ValidationPipe implements PipeTransform {
             if (value.required) {
                 return "Required.";
             }
-            if (value.incorrectCredentials) {
+            if (value.invalidCredentials) {
                 return "Incorrect username and/or password.";
+            }
+            if (value.userDetailsFailure) {
+                return "Failed to load user details.";
             }
         }
         return null;

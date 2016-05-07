@@ -1,4 +1,4 @@
-import {CourseStatus} from '../enums/course-status.enum'
+import {CourseStatus} from '../constants/course-status.enum'
 
 export class PreferenceModel {
   catalogStatusFilters:[CourseStatus] = [

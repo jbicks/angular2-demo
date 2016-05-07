@@ -1,4 +1,4 @@
-import {CourseStatus} from '../enums/course-status.enum'
+import {CourseStatus} from '../constants/course-status.enum'
 
 export class CourseModel {
   id: string;

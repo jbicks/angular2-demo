@@ -1,7 +1,14 @@
+import {ActiveStatus} from '../constants/active-status.enum'
+
 export class UserModel {
-    id: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    language: number;
+    Id:string;
+    DepartmentId:string;
+    FirstName:string;
+    MiddleName:string;
+    LastName:string;
+    Username:string;
+    EmailAddress:string;
+    LanguageId:number;
+    JobTitle:string;
+    ActiveStatus:ActiveStatus;
 }

@@ -9,6 +9,6 @@
       <input #password="ngForm" ngControl="password" [class.error]="!password.valid" type="password" class="input-block-level" placeholder="password">
       <span *ngIf="!password.valid" class="validation-error">{{password.errors | validation}}</span>
 
-      <button [disabled]="!form.valid" class="btn btn-large btn-primary" type="submit">Sign in</button>
+      <button [disabled]="!form.valid" class="btn btn-large btn-primary">Sign in</button>
   </form>
 </div>
