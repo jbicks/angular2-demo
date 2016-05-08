@@ -53,7 +53,8 @@ export class LoginComponent {
     getUserDetails() {
         Observable.forkJoin(
             this._userService.getDetails(),
-            this._localizationService.getLanguages()
+            this._localizationService.getLanguages(),
+            this._localizationService.getTerms(1)
         )
         .subscribe(
             success => {
