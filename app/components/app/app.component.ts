@@ -1,18 +1,18 @@
 import {Component, OnInit} from 'angular2/core';
 import {LoginComponent} from '../login/login.component';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {CoursesComponent} from '../courses/courses.component';
+import {CatalogComponent} from '../catalog/catalog.component';
 
 @RouteConfig([
     { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: true },
-    { path: '/courses', name: 'Courses', component: CoursesComponent },
+    { path: '/catalog', name: 'Courses', component: CatalogComponent },
     { path: '/*other', name: 'Other', redirectTo: ['Login'] }
 ])
 
 @Component({
   selector: 'app',
   template: `
-    <h1>Absorb 6</h1>      
+    <h1>Absorb 6</h1>
     <router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES]
