@@ -1,11 +1,13 @@
-import {Component} from 'angular2/core'
+import {Component, OnInit} from 'angular2/core'
+import {Router} from 'angular2/router'
 import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common'
 import {LocalizationService} from '../../services/localization.service'
 import {UserService} from '../../services/user.service'
 import {ValidationPipe} from '../../pipes/validation.pipe'
 import {Store} from '../../store/store'
 import {Observable} from 'rxjs/Rx'
-import {Router} from 'angular2/router';
+
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 
@@ -62,8 +64,10 @@ export class LoginComponent {
     getUserDetails() {
         return Observable.forkJoin(
             this._userService.getDetails(),
-            this._localizationService.getLanguages()
+            this._localizationService.getLanguages(),
+            this._localizationService.getTerms(1)
         )
+
     }
 
     gotoCatalog() {
