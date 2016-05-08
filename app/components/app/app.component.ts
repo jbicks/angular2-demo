@@ -12,7 +12,8 @@ import {CatalogComponent} from '../catalog/catalog.component';
 @Component({
   selector: 'app',
   template: `
-      <router-outlet></router-outlet>
+    <h1>Absorb 6</h1>      
+    <router-outlet></router-outlet>
     `,
   directives: [ROUTER_DIRECTIVES]
 })

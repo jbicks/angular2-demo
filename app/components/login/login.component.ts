@@ -5,6 +5,7 @@ import {UserService} from '../../services/user.service'
 import {ValidationPipe} from '../../pipes/validation.pipe'
 import {Store} from '../../store/store'
 import {Observable} from 'rxjs/Rx'
+import {Router} from 'angular2/router';
 
 import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 
@@ -22,7 +23,8 @@ export class LoginComponent {
     constructor(
         private _userService: UserService,
         private _localizationService: LocalizationService,
-        private _formBuilder: FormBuilder) {
+        private _formBuilder: FormBuilder,
+        private _router: Router) {
 
         this.form = _formBuilder.group({
             username: ['', Validators.required],
@@ -42,7 +44,14 @@ export class LoginComponent {
 
         this._userService.authenticate(username, password)
             .subscribe(
-                success => this.getUserDetails(),
+                success => {
+                    return this.getUserDetails().subscribe(
+                        success => {
+                            this.gotoCatalog()
+                        },
+                        error => this.form.setErrors({ userDetailsFailure: true })
+                    );
+                },
                 error => {
                     this.clearForm();
                     this.form.setErrors({ invalidCredentials: true });
@@ -51,20 +60,14 @@ export class LoginComponent {
     }
 
     getUserDetails() {
-        Observable.forkJoin(
+        return Observable.forkJoin(
             this._userService.getDetails(),
             this._localizationService.getLanguages()
-        )
-        .subscribe(
-            success => {
-              this.gotoCatalog()
-            },
-            error => this.form.setErrors({ userDetailsFailure: true })
         )
     }
 
     gotoCatalog() {
-        console.log("going to catalog")
+        this._router.navigate(['Catalog']);
     }
 
     clearForm() {
