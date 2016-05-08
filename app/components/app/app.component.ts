@@ -5,7 +5,7 @@ import {CatalogComponent} from '../catalog/catalog.component';
 
 @RouteConfig([
     { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: true },
-    { path: '/catalog', name: 'Courses', component: CatalogComponent },
+    { path: '/catalog', name: 'Catalog', component: CatalogComponent },
     { path: '/*other', name: 'Other', redirectTo: ['Login'] }
 ])
 

@@ -41,18 +41,14 @@ export class LoginComponent {
         var { username } = this.form.value;
         var { password } = this.form.value;
 
-        this._userService.authenticate(username, password)
-            .subscribe(
-                success => {
-                    return this.getUserDetails().subscribe(
-                        success => this._router.navigate(['Catalog']),
-                        error => this.formError({ userDetailsFailure: true })
-                    );
-                },
-                error => {
-                    this.formError({ invalidCredentials: true });
-                }
-            );
+
+        this._userService
+            .authenticate(username, password)
+            .flatMap(success => this.getUserDetails(),
+                     error => this.formError({ invalidCredentials: true })
+            )
+            .subscribe(success=>this._router.navigate(['Catalog']));
+
     }
 
     getUserDetails() {
