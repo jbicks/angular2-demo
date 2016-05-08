@@ -4,10 +4,10 @@ import {FilterSelectorComponent} from '../filter-selector/filter-selector.compon
 import {DropdownComponent} from '../dropdown/dropdown.component';
 
 @Component({
-    selector: "catalog",
+    selector: "courses",
     template: `<div>catalog component placeholder</div>`,
     directives: [CourseListComponent, FilterSelectorComponent, DropdownComponent]
 })
-export class CatalogComponent {
+export class CoursesComponent {
 
 }

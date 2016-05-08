@@ -1,10 +1,13 @@
-import {Component} from 'angular2/core'
+import {Component, OnInit} from 'angular2/core'
+import {Router} from 'angular2/router'
 import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common'
 import {LocalizationService} from '../../services/localization.service'
 import {UserService} from '../../services/user.service'
 import {ValidationPipe} from '../../pipes/validation.pipe'
 import {Store} from '../../store/store'
 import {Observable} from 'rxjs/Rx'
+
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 
@@ -22,6 +25,7 @@ export class LoginComponent {
     constructor(
         private _userService: UserService,
         private _localizationService: LocalizationService,
+        private _router: Router,
         private _formBuilder: FormBuilder) {
 
         this.form = _formBuilder.group({
@@ -57,15 +61,9 @@ export class LoginComponent {
             this._localizationService.getTerms(1)
         )
         .subscribe(
-            success => {
-              this.gotoCatalog()
-            },
+            success => this._router.navigate(['Courses']),
             error => this.form.setErrors({ userDetailsFailure: true })
         )
-    }
-
-    gotoCatalog() {
-        console.log("going to catalog")
     }
 
     clearForm() {
