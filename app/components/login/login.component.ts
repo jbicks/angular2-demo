@@ -41,14 +41,12 @@ export class LoginComponent {
         var { username } = this.form.value;
         var { password } = this.form.value;
 
-
         this._userService
             .authenticate(username, password)
             .flatMap(success => this.getUserDetails(),
                      error => this.formError({ invalidCredentials: true })
             )
             .subscribe(success=>this._router.navigate(['Catalog']));
-
     }
 
     getUserDetails() {
