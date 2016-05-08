@@ -1,10 +1,10 @@
 import {Injectable, Inject} from 'angular2/core';
 import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 import {Observable} from 'rxjs/Rx'
-import {UserModel} from '../store/models/user.model'
-import {Store} from '../store/store'
-import {Environment} from './constants/environment'
-import {HttpDefaults} from './constants/http-defaults'
+import {UserModel} from '../../store/models/user.model'
+import {Store} from '../../store/store'
+import {Environment} from '../constants/environment'
+import {HttpDefaults} from '../constants/http-defaults'
 
 @Injectable()
 export class UserService {

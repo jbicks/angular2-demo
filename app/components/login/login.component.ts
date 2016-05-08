@@ -3,9 +3,9 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common'
 import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 import {Observable} from 'rxjs/Rx'
-import {LocalizationService} from '../../services/localization.service'
-import {UserService} from '../../services/user.service'
-import {ValidationPipe} from '../../pipes/validation.pipe'
+import {LocalizationService} from '../../services/localization/localization.service'
+import {UserService} from '../../services/user/user.service'
+import {ValidationPipe} from '../../pipes/validation/validation.pipe'
 import {Store} from '../../store/store'
 
 @Component({
