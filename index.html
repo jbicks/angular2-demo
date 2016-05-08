@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <base href="/">
     <title>Angular 2 Playground</title>
@@ -22,21 +23,23 @@
 
     <!-- 2. Configure SystemJS -->
     <script>
-      System.config({
-        packages: {
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('app/main')
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('app/main')
             .then(null, console.error.bind(console));
     </script>
 </head>
 
 <!-- 3. Display the application -->
+
 <body>
     <app>Loading...</app>
 </body>
+
 </html>
