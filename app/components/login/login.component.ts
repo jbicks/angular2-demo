@@ -1,15 +1,12 @@
 import {Component, OnInit} from 'angular2/core'
-import {Router} from 'angular2/router'
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common'
+import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
+import {Observable} from 'rxjs/Rx'
 import {LocalizationService} from '../../services/localization.service'
 import {UserService} from '../../services/user.service'
 import {ValidationPipe} from '../../pipes/validation.pipe'
 import {Store} from '../../store/store'
-import {Observable} from 'rxjs/Rx'
-
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-
-import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
 
 @Component({
     selector: "login",
@@ -48,15 +45,12 @@ export class LoginComponent {
             .subscribe(
                 success => {
                     return this.getUserDetails().subscribe(
-                        success => {
-                            this.gotoCatalog()
-                        },
-                        error => this.form.setErrors({ userDetailsFailure: true })
+                        success => this._router.navigate(['Catalog']),
+                        error => this.formError({ userDetailsFailure: true })
                     );
                 },
                 error => {
-                    this.clearForm();
-                    this.form.setErrors({ invalidCredentials: true });
+                    this.formError({ invalidCredentials: true });
                 }
             );
     }
@@ -67,14 +61,11 @@ export class LoginComponent {
             this._localizationService.getLanguages(),
             this._localizationService.getTerms(1)
         )
-
     }
 
-    gotoCatalog() {
-        this._router.navigate(['Catalog']);
-    }
+    formError(error:any) {
+        this.form.setErrors(error);
 
-    clearForm() {
         var controls = this.form.controls;
         for (let control in controls) {
             var ctrl = controls[control] as Control;
