@@ -25,8 +25,8 @@ export class LoginComponent {
     constructor(
         private _userService: UserService,
         private _localizationService: LocalizationService,
-        private _router: Router,
-        private _formBuilder: FormBuilder) {
+        private _formBuilder: FormBuilder,
+        private _router: Router) {
 
         this.form = _formBuilder.group({
             username: ['', Validators.required],
@@ -46,7 +46,14 @@ export class LoginComponent {
 
         this._userService.authenticate(username, password)
             .subscribe(
-                success => this.getUserDetails(),
+                success => {
+                    return this.getUserDetails().subscribe(
+                        success => {
+                            this.gotoCatalog()
+                        },
+                        error => this.form.setErrors({ userDetailsFailure: true })
+                    );
+                },
                 error => {
                     this.clearForm();
                     this.form.setErrors({ invalidCredentials: true });
@@ -55,15 +62,16 @@ export class LoginComponent {
     }
 
     getUserDetails() {
-        Observable.forkJoin(
+        return Observable.forkJoin(
             this._userService.getDetails(),
             this._localizationService.getLanguages(),
             this._localizationService.getTerms(1)
         )
-        .subscribe(
-            success => this._router.navigate(['Courses']),
-            error => this.form.setErrors({ userDetailsFailure: true })
-        )
+
+    }
+
+    gotoCatalog() {
+        this._router.navigate(['Catalog']);
     }
 
     clearForm() {

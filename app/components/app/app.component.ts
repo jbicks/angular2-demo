@@ -10,9 +10,10 @@ import {CoursesComponent} from '../courses/courses.component';
 ])
 
 @Component({
-    selector: 'app',
-    template: `
-      <router-outlet></router-outlet>
+  selector: 'app',
+  template: `
+    <h1>Absorb 6</h1>      
+    <router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES]
 })
