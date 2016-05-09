@@ -4,7 +4,6 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CatalogComponent} from '../catalog/catalog.component';
 import {LoggedInRouterOutlet} from '../../outlets/logged.in.outlet';
 import {StorageService} from '../../services/storage/storage.service';
-import {UserService} from '../../services/user/user.service';
 
 @RouteConfig([
     { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: true },
@@ -16,35 +15,20 @@ import {UserService} from '../../services/user/user.service';
   selector: 'app',
   template: `
     <h1>Absorb 6</h1>
-    
-   <ul class="breadcrumb">
-        <li *ngIf="!_userService.isLoggedIn()" class="active">Login</li>
-        <li *ngIf="_userService.isLoggedIn()" class="active">Catalog</li>
-    </ul>
-        
-    <span (click)="logout()" *ngIf="_userService.isLoggedIn()">Logout</span>
     <router-outlet></router-outlet>
     `,
     directives: [LoggedInRouterOutlet],
-    providers:[StorageService,UserService]
+    providers:[StorageService]
 })
 
 export class AppComponent implements OnInit {
     
-    constructor(private _router: Router, 
-                private _storageService:StorageService,
-                private _userService: UserService) {
+    constructor(private _storageService:StorageService) {
     }
 
     ngOnInit() {
         console.log('initializing app')
         
         this._storageService.load();
-    }
-    
-    logout(){
-        this._storageService.clear();
-        this._router.navigate(["Login"]);
-        
     }
 }
