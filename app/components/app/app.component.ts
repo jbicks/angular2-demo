@@ -14,8 +14,7 @@ import {StorageService} from '../../services/storage/storage.service';
 @Component({
   selector: 'app',
   template: `
-    <h1>Absorb 6</h1>
-    <router-outlet></router-outlet>
+         <router-outlet></router-outlet>
     `,
     directives: [LoggedInRouterOutlet],
     providers:[StorageService]
