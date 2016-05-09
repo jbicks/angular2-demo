@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CourseListComponent} from '../course-list/course-list.component';
-import {FilterSelectorComponent} from '../filter-selector/filter-selector.component';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 import {ProfileComponent} from '../profile/profile.component';
 import {StorageService} from '../../services/storage/storage.service';
@@ -43,7 +42,7 @@ import {Store} from '../../store/store';
             cursor:pointer;
         }
     `],
-    directives: [CourseListComponent, FilterSelectorComponent, DropdownComponent, ProfileComponent]
+    directives: [CourseListComponent, DropdownComponent, ProfileComponent]
 })
 export class CatalogComponent implements OnInit {
 
