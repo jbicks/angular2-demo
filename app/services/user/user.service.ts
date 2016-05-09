@@ -21,6 +21,7 @@ export class UserService {
         return this._http.post(url, null)
             .map(response => {
                 var token = response.text().replace(/"/g, ''); // the token is returned wrapped in quotes
+                this._store.token = token;
                 this._httpDefaults.requestOptionsArgs.headers.set('Authorization', token);
             })
             .catch(this.handleError);
@@ -28,7 +29,7 @@ export class UserService {
 
     getDetails():Observable<boolean> {
         var url = Environment.baseUrl + Environment.endpoints.userDetails;
-
+        
         return this._http.get(url, this._httpDefaults.requestOptionsArgs)
             .map(response => {
                 this._store.user = response.json();

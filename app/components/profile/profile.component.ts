@@ -8,6 +8,6 @@ import {Store} from '../../store/store'
 export class ProfileComponent {
     Name:string;
     constructor(private _store:Store) {
-        this.Name = _store.user.FirstName
+        this.Name = `${_store.user.FirstName} ${_store.user.LastName}`
     }
 }

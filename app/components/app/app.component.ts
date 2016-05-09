@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {LoginComponent} from '../login/login.component';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CatalogComponent} from '../catalog/catalog.component';
+import {LoggedInRouterOutlet} from '../../outlets/logged.in.outlet';
 
 @RouteConfig([
     { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: true },
@@ -15,7 +16,7 @@ import {CatalogComponent} from '../catalog/catalog.component';
     <h1>Absorb 6</h1>
     <router-outlet></router-outlet>
     `,
-    directives: [ROUTER_DIRECTIVES]
+    directives: [LoggedInRouterOutlet]
 })
 export class AppComponent implements OnInit {
     constructor(private _router: Router) {
