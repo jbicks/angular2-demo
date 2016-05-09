@@ -1,9 +1,9 @@
 import {CourseStatus} from '../constants/course-status.enum'
 
 export class CourseModel {
-  id: string;
-  title: string;
-  description: string;
-  status: CourseStatus;
+  Id: string;
+  Name: string;
+  Description: string;
+  ActiveStatus: CourseStatus;
   thumbnailUrl: string;
 }

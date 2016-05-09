@@ -11,12 +11,22 @@ import {Store} from '../../store/store';
 @Component({
     selector: "catalog",
     template: `
-        <ul class="breadcrumb">
-            <li class="active">Catalog</li>
-        </ul>
-        <a (click)="logout()">Logout</a>
-        <profile></profile>
-        <div>catalog component placeholder</div>
+        <a (click)="logout()" class="pull-right logout-link">Logout</a>
+        <div class="row">
+            <div class="span8">
+                <ul class="breadcrumb">
+                    <li class="active">Catalog</li>
+                </ul>
+            </div>
+            <div class="span4">
+                <div class="pull-right">
+                    <profile></profile>
+                </div>
+            </div>
+        </div>
+        <div>
+            <course-list></course-list>
+        </div>
         <footer>
             <dropdown [items]="languages" [direction]="'up'" (selected)="onLanguageChange($event)"></dropdown>
         </footer>
@@ -28,6 +38,9 @@ import {Store} from '../../store/store';
             position: fixed;
             bottom: 0;
             padding: 8px 15px;
+        }
+        .logout-link{
+            cursor:pointer;
         }
     `],
     directives: [CourseListComponent, FilterSelectorComponent, DropdownComponent, ProfileComponent]

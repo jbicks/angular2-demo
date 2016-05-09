@@ -6,6 +6,7 @@ export const Environment = {
       authenticate: 'authenticate?username={USERNAME}&password={PASSWORD}&privateKey={PRIVATE_KEY}',
       userDetails: 'mydetails',
       getLanguages: 'languages',
+      getCourses:'courses',
       getTerms: 'languages/{LANGUAGE_ID}/terms'
     }
 }
