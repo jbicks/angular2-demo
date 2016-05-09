@@ -37,9 +37,15 @@ export class UserService {
             })
             .catch(this.handleError);
     }
-
+    
+    isLoggedIn(){
+        return (this._store && this._store.token) ? true : false;
+    }
+    
     private handleError(error: any) {
         let errMsg = error.message || 'Server error';
         return Observable.throw(errMsg);
     }
+    
+    
 }

@@ -6,11 +6,11 @@ import {Observable} from 'rxjs/Rx'
 import {LocalizationService} from '../../services/localization/localization.service'
 import {UserService} from '../../services/user/user.service'
 import {ValidationPipe} from '../../pipes/validation/validation.pipe'
-import {Store} from '../../store/store'
+import {StorageService} from '../../services/storage/storage.service'
 
 @Component({
     selector: "login",
-    providers: [UserService, LocalizationService],
+    providers: [UserService, LocalizationService, StorageService],
     pipes: [ValidationPipe],
     templateUrl: 'app/components/login/login.template.html',
     styleUrls: ['app/components/login/login.styles.css']
@@ -23,7 +23,8 @@ export class LoginComponent {
         private _userService: UserService,
         private _localizationService: LocalizationService,
         private _formBuilder: FormBuilder,
-        private _router: Router) {
+        private _router: Router,
+        private _storageService: StorageService) {
 
         this.form = _formBuilder.group({
             username: ['', Validators.required],
@@ -46,7 +47,10 @@ export class LoginComponent {
             .flatMap(success => this.getUserDetails(),
                      error => this.formError({ invalidCredentials: true })
             )
-            .subscribe(success=>this._router.navigate(['Catalog']));
+            .subscribe(success=>{
+                this._storageService.save();
+                this._router.navigate(['Catalog'])
+            });
     }
 
     getUserDetails() {
