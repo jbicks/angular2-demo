@@ -3,7 +3,7 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 @Component({
   selector: "dropdown",
   template: `
-      <div [class.open]="open" [class.dropdown]="direction=='down'" [class.dropup]="direction=='up'">
+      <div  [class.open]="open" [class.dropdown]="direction=='down'" [class.dropup]="direction=='up'">
           <button (click)="open = !open" (blur)="open=false"
               class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{items[selectedIndex]}}

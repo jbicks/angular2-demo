@@ -6,6 +6,7 @@ import {ProfileComponent} from '../profile/profile.component';
 import {StorageService} from '../../services/storage/storage.service';
 import {LanguageModel} from '../../store/models/language.model';
 import {Store} from '../../store/store';
+import {ItemListComponent} from '../item-list/item-list.component';
 
 @Component({
     selector: "catalog",
@@ -42,7 +43,7 @@ import {Store} from '../../store/store';
             cursor:pointer;
         }
     `],
-    directives: [CourseListComponent, DropdownComponent, ProfileComponent]
+    directives: [CourseListComponent, DropdownComponent, ProfileComponent, ItemListComponent]
 })
 export class CatalogComponent implements OnInit {
 

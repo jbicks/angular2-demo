@@ -46,13 +46,13 @@ export class CourseListComponent  implements OnInit {
         this._filteredCourses = this._courses;
       });
   }
-  
+
   onStatusChanged(status:number){
     if(status == 0){
       this._filteredCourses = this._courses;
     }
-    else{
-      this._filteredCourses = this._courses.filter(course=>course.ActiveStatus == (status -1));
+    else {
+      this._filteredCourses = this._courses.filter(course=>course.ActiveStatus == --status);
     }
     console.log('updated status to ' + status);
   }
