@@ -44,13 +44,15 @@ export class LoginComponent {
 
         this._userService
             .authenticate(username, password)
-            .flatMap(success => this.getUserDetails(),
-                     error => this.formError({ invalidCredentials: true })
+            .flatMap(
+                success => this.getUserDetails(),
+                error => this.formError({ invalidCredentials: true })
             )
             .subscribe(success=>{
                 this._storageService.save();
                 this._router.navigate(['Catalog'])
             });
+
     }
 
     getUserDetails() {
