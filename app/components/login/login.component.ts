@@ -6,11 +6,11 @@ import {Observable} from 'rxjs/Rx'
 import {LocalizationService} from '../../services/localization/localization.service'
 import {UserService} from '../../services/user/user.service'
 import {ValidationPipe} from '../../pipes/validation/validation.pipe'
-import {StorageService} from '../../services/storage/storage.service'
+import {SessionService} from '../../services/storage/session.service'
 
 @Component({
     selector: "login",
-    providers: [UserService, LocalizationService, StorageService],
+    providers: [UserService, LocalizationService, SessionService],
     pipes: [ValidationPipe],
     templateUrl: 'app/components/login/login.template.html',
     styleUrls: ['app/components/login/login.styles.css']
@@ -24,7 +24,7 @@ export class LoginComponent {
         private _localizationService: LocalizationService,
         private _formBuilder: FormBuilder,
         private _router: Router,
-        private _storageService: StorageService) {
+        private _storageService: SessionService) {
 
         this.form = _formBuilder.group({
             username: ['', Validators.required],
