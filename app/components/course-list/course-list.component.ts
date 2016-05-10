@@ -4,23 +4,17 @@ import {CatalogService} from '../../services/catalog/catalog.service';
 import {CourseModel} from '../../store/models/course.model';
 import {ActiveStatus} from '../../store/constants/active-status.enum';
 import {DropdownComponent} from '../dropdown/dropdown.component';
+import {ItemListComponent} from '../item-list/item-list.component';
 
 @Component({
   selector:'course-list',
   template: `
     <dropdown [items]="_statuses" (selected)="onStatusChanged($event)" (select)="2"></dropdown>
-    
-    <div class="media" *ngFor="#course of _filteredCourses">
-      <a class="pull-left">
-        <img class="media-object" src="http://lorempixel.com/64/64/business?id={{course.Id}}">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">{{course.Name}}</h4>
-        {{course.Description}}
-      </div>
-    </div>
+    <item-list>
+      <course-item *ngFor="#course of _filteredCourses" [course]="course"></course-item>
+    </item-list>
   `,
-  directives: [CourseItemComponent, DropdownComponent],
+  directives: [CourseItemComponent, DropdownComponent, ItemListComponent],
   providers:[CatalogService]
 })
 
