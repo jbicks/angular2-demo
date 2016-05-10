@@ -11,7 +11,7 @@ import {ItemListComponent} from '../item-list/item-list.component';
 @Component({
     selector: "page-skeleton",
     template: `
-        <a (click)="logout()" class="pull-right logout-link">Logout</a>
+        <a href="#" (click)="logout()" class="btn btn-danger pull-right logout">Logout</a>
         <div class="row">
             <div class="span8">
                 <ul class="breadcrumb">
@@ -39,8 +39,8 @@ import {ItemListComponent} from '../item-list/item-list.component';
             bottom: 0;
             padding: 8px 15px;
         }
-        .logout-link{
-            cursor:pointer;
+        .logout {
+            margin-top: 3px;
         }
     `],
     directives: [CourseListComponent, DropdownComponent, ProfileComponent, ItemListComponent]
@@ -61,6 +61,7 @@ export class PageSkeletonComponent implements OnInit {
     logout() {
         this._storageService.clear();
         this._router.navigate(["Login"]);
+        return false;
     }
 
     onLanguageChange(index:number) {

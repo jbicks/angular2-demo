@@ -1,16 +1,24 @@
 import {Component} from 'angular2/core';
 import {Store} from '../../store/store'
+import {TranslatePipe} from '../../pipes/translate/translate.pipe';
 
 @Component({
     selector: "profile",
-    template: `<div>
+    pipes: [TranslatePipe],
+    template: `
+        <div>
             <img src="http://lorempixel.com/50/50/people" class="img-circle">
-            Name: {{Name}}
-        </div>`
+            {{ 'LoggedInAs' | translate:firstName:lastName }}
+        </div>
+    `
 })
 export class ProfileComponent {
-    Name:string;
+
+    firstName:string;
+    lastName:string;
+
     constructor(private _store:Store) {
-        this.Name = `${_store.user.FirstName} ${_store.user.LastName}`
+        this.firstName = _store.user.FirstName;
+        this.lastName = _store.user.LastName;
     }
 }

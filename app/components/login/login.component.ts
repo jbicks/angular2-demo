@@ -10,7 +10,7 @@ import {StorageService} from '../../services/storage/storage.service';
 
 @Component({
     selector: "login",
-    providers: [UserService, LocalizationService, StorageService],
+    providers: [UserService, StorageService],
     pipes: [ValidationPipe],
     templateUrl: 'app/components/login/login.template.html',
     styleUrls: ['app/components/login/login.styles.css']

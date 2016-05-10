@@ -35,6 +35,22 @@ export class LocalizationService {
           .catch(this.handleError);
     }
 
+    translate(termKey:string, mappings: string[] = null):string {
+        if (this._store.terms) {
+            var matchingTerms = this._store.terms.filter(t => t.Key == termKey);
+            if (matchingTerms) {
+                var value = matchingTerms[0].Value;
+                if (mappings) {
+                    for (var i:number = 1; i <= mappings.length; i++) {
+                        value = value.replace('{' + i + '}', mappings[i - 1]);
+                    }
+                }
+                return value;
+            }
+        }
+        return null;
+    }
+
     private handleError(error: any) {
         let errMsg = error.message || 'Server error';
         return Observable.throw(errMsg);

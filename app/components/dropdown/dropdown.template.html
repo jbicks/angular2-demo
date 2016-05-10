@@ -1,5 +1,5 @@
 <div [ngClass]="{ open:isOpen, dropdown:direction=='down', dropup:direction=='up' }">
-    <button (click)="isOpen=!isOpen" (blur)="isOpen=false" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <button (click)="isOpen=!isOpen" (blur)="isOpen=false" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         {{items[selectedIndex]}}
         <span class="caret"></span>
     </button>
