@@ -3,7 +3,7 @@ import {Store} from '../../store/store';
 import {HttpDefaults} from '../constants/http-defaults';
 
 @Injectable()
-export class StorageService{
+export class SessionService{
     constructor(private _store:Store, private _httpDefaults: HttpDefaults){
         
     }

@@ -11,7 +11,7 @@ import {ItemListComponent} from '../item-list/item-list.component';
   template: `
     <dropdown [items]="_statuses" (selected)="onStatusChanged($event)" (select)="2"></dropdown>
     <item-list>
-      <course-item *ngFor="#course of _filteredCourses" [course]="course"></course-item>
+      <course-item *ngFor="var course of _filteredCourses" [course]="course"></course-item>
     </item-list>
   `,
   directives: [CourseItemComponent, DropdownComponent, ItemListComponent],

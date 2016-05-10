@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CourseListComponent} from '../course-list/course-list.component';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 import {ProfileComponent} from '../profile/profile.component';
-import {StorageService} from '../../services/storage/storage.service';
+import {SessionService} from '../../services/storage/session.service';
 import {LanguageModel} from '../../store/models/language.model';
 import {Store} from '../../store/store';
 import {ItemListComponent} from '../item-list/item-list.component';
@@ -51,7 +51,7 @@ export class PageSkeletonComponent implements OnInit {
 
     constructor(private _store: Store,
                 private _router: Router,
-                private _storageService:StorageService) {
+                private _storageService:SessionService) {
     }
 
     ngOnInit() {

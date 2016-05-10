@@ -3,7 +3,7 @@ import {LoginComponent} from '../login/login.component';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CatalogComponent} from '../catalog/catalog.component';
 import {LoggedInRouterOutlet} from '../../outlets/logged.in.outlet';
-import {StorageService} from '../../services/storage/storage.service';
+import {SessionService} from '../../services/storage/session.service';
 
 @RouteConfig([
     { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: true },
@@ -17,12 +17,12 @@ import {StorageService} from '../../services/storage/storage.service';
          <router-outlet></router-outlet>
     `,
     directives: [LoggedInRouterOutlet],
-    providers:[StorageService]
+    providers:[SessionService]
 })
 
 export class AppComponent implements OnInit {
     
-    constructor(private _storageService:StorageService) {
+    constructor(private _storageService:SessionService) {
     }
 
     ngOnInit() {
