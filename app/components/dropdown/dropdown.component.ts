@@ -12,22 +12,21 @@ export class DropdownComponent {
     @Input()
     direction:string = 'down';
 
-    @Output("selected-index")
+    @Input("selected-index")
     selectedIndex:number = 0;
 
     @Output('selected')
     selectionChanged:EventEmitter<number> = new EventEmitter<number>();
 
-    @Input()
     select(index:number) {
         if (index != this.selectedIndex)
         {
             this.selectedIndex = index;
             this.selectionChanged.emit(index);
         }
-        this.open = false;
+        this.isOpen = false;
         return false;
     }
 
-    open:boolean;
+    isOpen:boolean;
 }
