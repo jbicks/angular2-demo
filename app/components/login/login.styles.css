@@ -9,9 +9,10 @@
   float: left;
 }
 .validation-error {
-  width: 400px;
+  width: 100%;
   color: white;
   font-size: 11px;
+  box-sizing: border-box;
   background-color: #E82C0C;
   border-radius: 4px;
   padding: 4px 4px 4px 11px;

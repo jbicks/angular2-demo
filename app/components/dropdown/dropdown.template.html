@@ -1,0 +1,9 @@
+<div [ngClass]="{ open:isOpen, dropdown:direction=='down', dropup:direction=='up' }">
+    <button (click)="isOpen=!isOpen" (blur)="isOpen=false" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{items[selectedIndex]}}
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li *ngFor="#item of items; #i = index" class="dropup-item"><a href=# (mousedown)="select(i)">{{item}}</a></li>
+    </ul>
+</div>

@@ -8,6 +8,7 @@ import {UserService} from '../../services/user/user.service'
 import {ValidationPipe} from '../../pipes/validation/validation.pipe'
 import {SessionService} from '../../services/storage/session.service'
 
+
 @Component({
     selector: "login",
     providers: [UserService, LocalizationService, SessionService],
@@ -52,7 +53,6 @@ export class LoginComponent {
                 this._storageService.save();
                 this._router.navigate(['Catalog'])
             });
-
     }
 
     getUserDetails() {
