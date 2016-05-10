@@ -4,6 +4,7 @@ import {CourseListComponent} from '../course-list/course-list.component';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 import {ProfileComponent} from '../profile/profile.component';
 import {SessionService} from '../../services/storage/session.service';
+import {LocalizationService} from '../../services/localization/localization.service';
 import {LanguageModel} from '../../store/models/language.model';
 import {Store} from '../../store/store';
 import {ItemListComponent} from '../item-list/item-list.component';
@@ -51,6 +52,7 @@ export class PageSkeletonComponent implements OnInit {
 
     constructor(private _store: Store,
                 private _router: Router,
+                private _localizationService:LocalizationService,
                 private _storageService:SessionService) {
     }
 
@@ -65,7 +67,11 @@ export class PageSkeletonComponent implements OnInit {
     }
 
     onLanguageChange(index:number) {
-        var languageId = this._store.languages[index].Id;
-        console.log(languageId);
+        var language = this._store.languages[index];
+        this._localizationService.getTerms(language.Id)
+          .subscribe(
+              success => console.log(language.Name + " translations have been loaded."),
+              error => console.log("failed to load translations.")
+          );
     }
 }

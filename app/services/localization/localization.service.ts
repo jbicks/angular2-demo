@@ -28,8 +28,14 @@ export class LocalizationService {
 
       return this._http.get(url, this._httpDefaults.requestOptionsArgs)
           .map(response => {
-              var terms = response.json();
-              this._store.terms = terms;
+              let terms = response.json();
+              if (!this._store.terms) {
+                  this._store.terms = {};
+              }
+              for (var index in terms) {
+                  let term = terms[index];
+                  this._store.terms[term.Key] = term.Value;
+              }
               return true;
           })
           .catch(this.handleError);
@@ -38,14 +44,11 @@ export class LocalizationService {
     translate(termKey:string, mappings: string[] = null):string {
         if(!this._store.terms)
             return;
-            
-        var term = this._store.terms.find(t => t.Key == termKey);
-        
-        if(!term)
+
+        var value = this._store.terms[termKey];
+        if (!value)
             return;
-        
-        var value = term.Value;
-        
+
         if (mappings) {
             for (var i:number = 1; i <= mappings.length; i++) {
                 value = value.replace('{' + i + '}', mappings[i - 1]);

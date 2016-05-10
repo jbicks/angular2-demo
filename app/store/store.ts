@@ -10,5 +10,5 @@ export class Store {
   user:UserModel;
   catalog:CatalogModel;
   languages:LanguageModel[];
-  terms:TermModel[];
+  terms:{[key:string]:string};
 }
