@@ -1,12 +1,12 @@
 import {Component, OnInit} from 'angular2/core'
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common'
-import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http'
-import {Observable} from 'rxjs/Rx'
-import {LocalizationService} from '../../services/localization/localization.service'
-import {UserService} from '../../services/user/user.service'
-import {ValidationPipe} from '../../pipes/validation/validation.pipe'
-import {StorageService} from '../../services/storage/storage.service'
+import {ControlGroup, Control, FormBuilder, Validators} from 'angular2/common';
+import {Http, Response, RequestOptionsArgs, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Rx';
+import {LocalizationService} from '../../services/localization/localization.service';
+import {UserService} from '../../services/user/user.service';
+import {ValidationPipe} from '../../pipes/validation/validation.pipe';
+import {StorageService} from '../../services/storage/storage.service';
 
 @Component({
     selector: "login",
@@ -52,7 +52,6 @@ export class LoginComponent {
                 this._storageService.save();
                 this._router.navigate(['Catalog'])
             });
-
     }
 
     getUserDetails() {
