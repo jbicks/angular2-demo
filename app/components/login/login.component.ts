@@ -45,14 +45,10 @@ export class LoginComponent {
 
         this._userService
             .authenticate(username, password)
-            .flatMap(
+            .subscribe(
                 success => this.getUserDetails(),
                 error => this.formError({ invalidCredentials: true })
-            )
-            .subscribe(success=>{
-                this._storageService.save();
-                this._router.navigate(['Catalog'])
-            });
+            );
     }
 
     getUserDetails() {
@@ -61,15 +57,21 @@ export class LoginComponent {
             this._localizationService.getLanguages(),
             this._localizationService.getTerms(1)
         )
+        .subscribe(
+            success => {
+                this._storageService.save();
+                this._router.navigate(['Catalog']);
+            },
+            error => this.formError({ invalidCredentials: true })
+        );
     }
 
     formError(error:any) {
-        this.form.setErrors(error);
-
         var controls = this.form.controls;
         for (let control in controls) {
             var ctrl = controls[control] as Control;
             ctrl.updateValue('');
         }
+        this.form.setErrors(error);
     }
 }
