@@ -63,7 +63,5 @@ export class CourseListComponent implements OnInit {
         this._filteredCourses = status != 0
             ? this._courses.filter(course => course.ActiveStatus == (status - 1))
             : this._courses;
-
-        console.log('updated status to ' + status);
     }
 }
