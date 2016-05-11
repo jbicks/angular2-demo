@@ -5,49 +5,65 @@ import {CourseModel} from '../../store/models/course.model';
 import {ActiveStatus} from '../../store/constants/active-status.enum';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 import {ItemListComponent} from '../item-list/item-list.component';
+import {Store} from '../../store/store';
 
 @Component({
-  selector:'course-list',
-  template: `
-    <dropdown [items]="_statuses" (selected)="onStatusChanged($event)" (select)="2"></dropdown>
-    <item-list>
-      <course-item *ngFor="var course of _filteredCourses" [course]="course"></course-item>
-    </item-list>
-  `,
-  directives: [CourseItemComponent, DropdownComponent, ItemListComponent],
-  providers:[CatalogService]
+    selector: 'course-list',
+    template: `
+        <dropdown [items]="_statuses" (selected)="onStatusChanged($event)" (select)="2"></dropdown>
+        <item-list>
+            <course-item *ngFor="var course of _filteredCourses" [course]="course"></course-item>
+        </item-list>
+    `,
+    styles: [`
+        dropdown {
+            margin-bottom: 15px;
+            float: left;
+        }
+        item-list {
+            float: left;
+        }
+    `],
+    directives: [CourseItemComponent, DropdownComponent, ItemListComponent],
+    providers: [CatalogService]
 })
 
-export class CourseListComponent  implements OnInit {
-  
-  private _courses:CourseModel[];
-  private _filteredCourses:CourseModel[];
-  private _statuses:string[] = ['All'];
-  
-  constructor(private _catalogService: CatalogService){
-    console.log('in constructor')
-  }
-  
-  ngOnInit(){
-    Object.keys(ActiveStatus)
-      .filter(v => Number.isInteger(+v))
-      .forEach(v => this._statuses.push(ActiveStatus[v]));
-   
-    this._catalogService
-      .getCourses()
-      .subscribe(courses=>{
-        this._courses = courses;
-        this._filteredCourses = this._courses;
-      });
-  }
+export class CourseListComponent implements OnInit {
 
-  onStatusChanged(status:number){
-    if(status == 0){
-      this._filteredCourses = this._courses;
+    private _courses: CourseModel[];
+    private _filteredCourses: CourseModel[];
+    private _statuses: string[];
+
+    constructor(private _store: Store, private _catalogService: CatalogService) {
     }
-    else {
-      this._filteredCourses = this._courses.filter(course=>course.ActiveStatus == (status -1));
+
+    ngOnInit() {
+        this.getCourses();
+        this.addFilters();
     }
-    console.log('updated status to ' + status);
-  }
+
+    getCourses() {
+        this._catalogService
+            .getCourses()
+            .subscribe(courses => {
+                this._courses = courses;
+                this._filteredCourses = this._courses;
+            });
+    }
+
+    addFilters() {
+        var statusNames = ['All', ...Object.keys(ActiveStatus)
+            .filter(v => Number.isInteger(+v))
+            .map(v => ActiveStatus[v])];
+
+        this._statuses = statusNames.map(name => this._store.terms[name]);
+    }
+
+    onStatusChanged(status: number) {
+        this._filteredCourses = status != 0
+            ? this._courses.filter(course => course.ActiveStatus == (status - 1))
+            : this._courses;
+
+        console.log('updated status to ' + status);
+    }
 }

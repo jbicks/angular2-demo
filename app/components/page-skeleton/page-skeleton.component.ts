@@ -12,26 +12,20 @@ import {ItemListComponent} from '../item-list/item-list.component';
 @Component({
     selector: "page-skeleton",
     template: `
-        <a href="#" (click)="logout()" class="btn btn-danger pull-right logout">Logout</a>
-        <div class="row">
-            <div class="span8">
-                <ul class="breadcrumb">
-                    <li class="active">Catalog</li>
-                </ul>
-            </div>
-            <div class="span4">
-                <div class="pull-right">
-                    <profile></profile>
-                </div>
-            </div>
+        <div class="profile-container">
+            <a href="#" (click)="logout()" class="btn btn-danger logout">{{_store.terms.Logout}}</a>
+            <profile class="profile"></profile>
         </div>
-        <div>
+        <ul class="breadcrumb">
+            <li class="active">{{_store.terms.Catalog}}</li>
+        </ul>
+        <div class="content-container">
             <ng-content></ng-content>
         </div>
         <footer>
             <dropdown [items]="languages" [direction]="'up'" (selected)="onLanguageChange($event)"></dropdown>
         </footer>
-        `,
+    `,
     styles: [`
         footer {
             width: 100%;
@@ -40,8 +34,26 @@ import {ItemListComponent} from '../item-list/item-list.component';
             bottom: 0;
             padding: 8px 15px;
         }
+        .profile-container {
+            padding: 15px 15px 15px;
+            float: right;
+            clear: both;
+        }
+        .profile {
+            margin-right: 25px;
+            float: right;
+        }
         .logout {
-            margin-top: 3px;
+            margin-top: 10px;
+            float: right;
+        }
+        .breadcrumb {
+            width: 100%;
+            float: left;
+        }
+        .content-container {
+            margin-bottom: 60px;
+            float: left;
         }
     `],
     directives: [CourseListComponent, DropdownComponent, ProfileComponent, ItemListComponent]

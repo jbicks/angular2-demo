@@ -8,7 +8,13 @@ import {PageSkeletonComponent} from '../page-skeleton/page-skeleton.component';
         <page-skeleton>
             <course-list></course-list>
         </page-skeleton>
-        `,
+    `,
+    styles: [`
+        course-list {
+            padding:25px;
+            float: left;
+        }
+    `],
     directives: [CourseListComponent, PageSkeletonComponent]
 })
 export class CatalogComponent  {
