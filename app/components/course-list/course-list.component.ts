@@ -52,11 +52,9 @@ export class CourseListComponent implements OnInit {
     }
 
     addFilters() {
-        var statusNames = ['All', ...Object.keys(ActiveStatus)
+        this._statuses = ['All', ...Object.keys(ActiveStatus)
             .filter(v => Number.isInteger(+v))
             .map(v => ActiveStatus[v])];
-
-        this._statuses = statusNames.map(name => this._store.terms[name]);
     }
 
     onStatusChanged(status: number) {
