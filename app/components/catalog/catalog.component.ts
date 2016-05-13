@@ -11,7 +11,7 @@ import {PageSkeletonComponent} from '../page-skeleton/page-skeleton.component';
     `,
     styles: [`
         course-list {
-            padding:25px;
+            padding:95px;
             float: left;
         }
     `],

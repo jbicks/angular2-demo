@@ -2,7 +2,12 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 @Component({
   selector: "dropdown",
-  templateUrl: 'app/components/dropdown/dropdown.template.html'
+  templateUrl: 'app/components/dropdown/dropdown.template.html',
+  styles:[`
+    div{
+        padding-bottom:10px;
+    }
+  `]
 })
 export class DropdownComponent {
 

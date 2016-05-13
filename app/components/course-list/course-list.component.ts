@@ -10,7 +10,7 @@ import {Store} from '../../store/store';
 @Component({
     selector: 'course-list',
     template: `
-        <dropdown [items]="_statuses" (selected)="onStatusChanged($event)" (select)="2"></dropdown>
+        <dropdown [items]="_statuses" (selected)="onStatusChanged($event)"></dropdown>
         <item-list>
             <course-item *ngFor="var course of _filteredCourses" [course]="course"></course-item>
         </item-list>
@@ -18,10 +18,6 @@ import {Store} from '../../store/store';
     styles: [`
         dropdown {
             margin-bottom: 15px;
-            float: left;
-        }
-        item-list {
-            float: left;
         }
     `],
     directives: [CourseItemComponent, DropdownComponent, ItemListComponent],

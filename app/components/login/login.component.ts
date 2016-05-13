@@ -11,7 +11,7 @@ import {SessionService} from '../../services/storage/session.service'
 
 @Component({
     selector: "login",
-    providers: [UserService, LocalizationService, SessionService],
+    providers: [UserService, SessionService],
     pipes: [ValidationPipe],
     templateUrl: 'app/components/login/login.template.html',
     styleUrls: ['app/components/login/login.styles.css']
@@ -42,30 +42,28 @@ export class LoginComponent {
     submit(event) {
         var { username } = this.form.value;
         var { password } = this.form.value;
-
+        
+        var onSuccessfulLogin = ()=>{
+            this._storageService.save();
+            this._router.navigate(['Catalog']);
+        }
+    
         this._userService
             .authenticate(username, password)
             .subscribe(
-                success => this.getUserDetails(),
+                success => onSuccessfulLogin(),
                 error => this.formError({ invalidCredentials: true })
             );
     }
-
+    
     getUserDetails() {
         return Observable.forkJoin(
             this._userService.getDetails(),
             this._localizationService.getLanguages(),
             this._localizationService.getTerms(1)
-        )
-        .subscribe(
-            success => {
-                this._storageService.save();
-                this._router.navigate(['Catalog']);
-            },
-            error => this.formError({ invalidCredentials: true })
         );
-    }
-
+    }    
+    
     formError(error:any) {
         var controls = this.form.controls;
         for (let control in controls) {

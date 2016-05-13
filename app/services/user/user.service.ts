@@ -13,10 +13,7 @@ export class UserService {
     }
 
     authenticate(username: string, password: string): Observable<void> {
-        var url = Environment.baseUrl + Environment.endpoints.authenticate;
-        url = url.replace('{USERNAME}', username);
-        url = url.replace('{PASSWORD}', password);
-        url = url.replace('{PRIVATE_KEY}', Environment.apiKey);
+        var url = this.getAuthUrl(username,password);
 
         return this._http.post(url, null)
             .map(response => {
@@ -45,6 +42,14 @@ export class UserService {
     private handleError(error: any) {
         let errMsg = error.message || 'Server error';
         return Observable.throw(errMsg);
+    }
+    
+    private getAuthUrl(username:string, password:string){
+        var url = Environment.baseUrl + Environment.endpoints.authenticate;
+        url = url.replace('{USERNAME}', username);
+        url = url.replace('{PASSWORD}', password);
+        url = url.replace('{PRIVATE_KEY}', Environment.apiKey);
+        return url;
     }
     
     
